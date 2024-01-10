@@ -94,6 +94,19 @@ async def yourmom(ctx):
     else:
         await ctx.send('Error: Unable to fetch a "your mom" joke.')
 
+@bot.command(name='fact')
+async def get_fact(ctx):
+    api_url = 'https://useless-facts.sameerkumar.website/api'
+    
+    try:
+        response = requests.get(api_url)
+        fact_data = response.json()
+        fact_text = fact_data['data']
+
+        await ctx.send(f'Fun Fact: {fact_text}')
+    except Exception as e:
+        await ctx.send(f"Unable to fetch fact. Error: {e}")
+
 @bot.event
 async def on_disconnect():
     print("Bot disconnected. Reconnecting...")
