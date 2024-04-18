@@ -110,7 +110,7 @@ async def get_fact(ctx):
 @bot.event
 async def on_disconnect():
     print("Bot disconnected. Reconnecting...")
-    await asyncio.sleep(5)  # Add a delay before attempting to reconnect
+    await asyncio.sleep(0.1)  # Add a delay before attempting to reconnect
     await bot.login(token, bot=True)
     await bot.connect()
 
