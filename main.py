@@ -22,7 +22,7 @@ your_mom_jokes = [
 
 bot = commands.Bot(command_prefix='?', intents=intents)
 
-status_messages = itertools.cycle(["Real blue smurf cat, no cap", "Merry Christmas!"])
+status_messages = itertools.cycle(["Real blue smurf cat, no cap", "we live we love we lie "])
 
 @bot.event
 async def on_ready():
