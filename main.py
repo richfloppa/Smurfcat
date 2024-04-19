@@ -79,20 +79,24 @@ async def yourmom(ctx):
     else:
         await ctx.send('Error: Unable to fetch a joke.')
 
+import requests
+
 @bot.command(name='yourmom', help='Get a "your mom" joke')
 async def yourmom(ctx):
-    # Fetch a "your mom" joke from the yomomma.info API
-    api_url = 'https://api.yomomma.info/'
-    response = requests.get(api_url)
+    try:
+        api_url = 'https://www.yomama-jokes.com/api/v1/jokes/random/'
+        response = requests.get(api_url)
 
-    if response.status_code == 200:
-        # Extract the joke from the response
-        joke = response.json()['joke']
-
-        # Send the joke to the chat
-        await ctx.send(joke)
-    else:
-        await ctx.send('Error: Unable to fetch a "your mom" joke.')
+        if response.status_code == 200:
+            joke = response.json().get('joke')
+            if joke:
+                await ctx.send(joke)
+            else:
+                await ctx.send('Error: Unable to fetch a "your mom" joke.')
+        else:
+            await ctx.send('Error: Unable to fetch a "your mom" joke.')
+    except requests.RequestException:
+        await ctx.send('Error: Unable to fetch a "your mom" joke')
 
 @bot.command(name='fact')
 async def get_fact(ctx):
